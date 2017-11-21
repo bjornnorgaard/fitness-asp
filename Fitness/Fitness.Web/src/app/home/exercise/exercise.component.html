@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Add an exercise</h1>
+<form (ngSubmit)="saveDialog()" #newExerciseForm="ngForm">
+  <div mat-dialog-content>
+    <div>
+      <mat-input-container class="row">
+        <input matInput placeholder="Exercise name" [(ngModel)]="exerciseName" name="exerciseName">
+      </mat-input-container>
+    </div>
+    <div>
+      <mat-input-container class="row">
+        <input matInput placeholder="Exercise Description" [(ngModel)]="exerciseDescription" name="exerciseDescription">
+      </mat-input-container>
+    </div>
+    <div>
+      <mat-input-container class="row">
+        <input type="number" matInput placeholder="Amount of sets" [(ngModel)]="setsAmount" name="setsAmount">
+      </mat-input-container>
+    </div>
+    <div>
+      <mat-input-container class="row">
+        <input type="number" matInput placeholder="Amount of reps" [(ngModel)]="repsAmount" name="repsAmount">
+      </mat-input-container>
+    </div>
+  </div>
+  <mat-dialog-actions style="float:right">
+    <button mat-button mat-raised-button color="accent" type="submit">Save</button>
+    <!-- Can optionally provide a result for the closing dialog. -->
+    <button mat-button mat-raised-button color="accent" (click)="closeDialog()">Cancel</button>
+  </mat-dialog-actions>
+</form>

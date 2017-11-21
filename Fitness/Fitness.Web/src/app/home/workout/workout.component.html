@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-title-group>
+    <mat-card-title>New Workout</mat-card-title>
+    <mat-card-subtitle>Create new workout</mat-card-subtitle>
+  </mat-card-title-group>
+  <mat-card-content>
+
+    <form role="form" (ngSubmit)="postWorkout()" [formGroup]="workoutFormGroup">
+      <mat-form-field>
+        <input matInput formControlName="title"  placeholder="Workout Title" type="text">
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!workoutFormGroup.valid">CREATE</button>
+      <button mat-button (click)="cancel()">CANCEL</button>
+    </form>
+  </mat-card-content>
+</mat-card>

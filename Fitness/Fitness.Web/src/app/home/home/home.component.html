@@ -1,0 +1,41 @@
+<mat-card *ngIf="workouts == undefined || workouts.length == 0">
+  <mat-card-title-group>
+    <mat-card-title>You should add some workouts</mat-card-title>
+    <mat-card-subtitle>Click 'Workout' in the navbar above</mat-card-subtitle>
+  </mat-card-title-group>
+</mat-card>
+
+<div *ngFor="let w of workouts ">
+  <mat-card>
+    <mat-card-title-group>
+      <mat-card-title>{{w.title}}</mat-card-title>
+      <mat-card-subtitle>Exercises in workout</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+
+      <table *ngIf="w.exercises == undefined || w.exercises.length == 0">
+        <p>Click below to add an exercise</p>
+      </table>
+
+      <table *ngIf="w.exercises != undefined && w.exercises.length != 0">
+        <tr>
+          <th>Title</th>
+          <th>Desc</th>
+          <th>Sets</th>
+          <th>Reps</th>
+        </tr>
+        <tr *ngFor="let e of w.exercises">
+          <td>{{e.title}}</td>
+          <td>{{e.description}}</td>
+          <td>{{e.sets}}</td>
+          <td>{{e.reps}}</td>
+        </tr>
+      </table>
+
+      <mat-card-actions style="padding-top: 2em;">
+        <button *ngIf="isLoggedIn()" mat-button color="primary" (click)=createExercise(w._id)>ADD EXERCISE</button>
+        <button *ngIf="isLoggedIn()" mat-button color="accent" (click)=logWorkout(w._id)>LOG ACTIVITY</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

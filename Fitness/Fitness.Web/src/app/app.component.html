@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <i class="fa fa-heart-o brand-icon"></i>
+  <p class="brand-icon">Fitness</p>
+  <a mat-button routerLink="/home" routerLinkActive="active">Home</a>
+  <a mat-button routerLink="/workout" *ngIf="isLoggedIn()"  routerLinkActive="active">Workout</a>
+  <span class="fill-middle-space"></span>
+  <div class="mat-toolbar-tools">
+    <a mat-button routerLink="/login" *ngIf="!isLoggedIn()" routerLinkActive="active">User login</a>
+    <a mat-button routerLink="/create-user" *ngIf="!isLoggedIn()" routerLinkActive="active">Create user</a>
+    <a mat-button (click)="signout()" *ngIf="isLoggedIn()" routerLinkActive="active">Sign out</a>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
