@@ -1,5 +1,3 @@
-using System.Net.Http;
-using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fitness.Web.Controllers
@@ -11,7 +9,7 @@ namespace Fitness.Web.Controllers
     [HttpGet]
     public IActionResult Get()
     {
-      return
+      return Ok($"{nameof(AngularController)} works!");
     }
   }
 }
