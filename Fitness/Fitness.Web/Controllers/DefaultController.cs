@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Fitness.Web.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [Produces("application/json")]
     public class DefaultController : Controller
     {
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok("Controller works!");
+            return Ok($"{nameof(DefaultController)} works!");
         }
     }
 }

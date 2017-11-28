@@ -45,49 +45,30 @@ namespace Fitness.Web
     public void Configure(IApplicationBuilder app, IHostingEnvironment env)
     {
       app.Use(async (context, next) =>
-            {
-              await next();
-              if (context.Response.StatusCode == 404 &&
-                  !Path.HasExtension(context.Request.Path.Value) &&
-                  !context.Request.Path.Value.StartsWith("/api/"))
-              {
-                context.Request.Path = "/index.html";
-                await next();
-              }
-            });
-
-      app.Use(async (context, next) =>
-            {
-              await next();
-              if (context.Request.Path.Value.Equals(""))
-              {
-                context.Request.Path = "/index.html";
-                await next();
-              }
-            });
-
-      if (env.IsDevelopment())
       {
-        app.UseDeveloperExceptionPage();
-        app.UseBrowserLink();
-        app.UseDatabaseErrorPage();
-      }
-      else
-      {
-        app.UseExceptionHandler("/Error");
-      }
-
-      app.UseStaticFiles();
+        await next();
+        if (context.Response.StatusCode == 404 &&
+            !Path.HasExtension(context.Request.Path.Value) &&
+            !context.Request.Path.Value.StartsWith("/api/"))
+        {
+          context.Request.Path = "/index.html";
+          await next();
+        }
+      });
       app.UseMvcWithDefaultRoute();
       app.UseDefaultFiles();
+      app.UseStaticFiles();
+      app.UseDeveloperExceptionPage();
+      app.UseBrowserLink();
+      app.UseDatabaseErrorPage();
       app.UseAuthentication();
 
-      app.UseMvc(routes =>
-      {
-        routes.MapRoute(
-                  name: "default",
-                  template: "{controller}/{action=Index}/{id?}");
-      });
+      //app.UseMvc(routes =>
+      //{
+      //  routes.MapRoute(
+      //            name: "default",
+      //            template: "{controller}/{action=Index}/{id?}");
+      //});
     }
   }
 }
