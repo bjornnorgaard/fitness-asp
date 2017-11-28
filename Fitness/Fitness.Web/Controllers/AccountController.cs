@@ -6,25 +6,29 @@ using Fitness.Web.Data;
 
 namespace Fitness.Web.Controllers
 {
-    [Route("[controller]/[action]")]
-    public class AccountController : Controller
+  /// <inheritdoc />
+  /// <summary>
+  /// This controller cannot be hit. See 'Configure()' method in 'Startup.cs'
+  /// </summary>
+  [Route("[controller]/[action]")]
+  public class AccountController : Controller
+  {
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly ILogger _logger;
+
+    public AccountController(SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger)
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger _logger;
-
-        public AccountController(SignInManager<ApplicationUser> signInManager, ILogger<AccountController> logger)
-        {
-            _signInManager = signInManager;
-            _logger = logger;
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
-            return RedirectToPage("/Index");
-        }
+      _signInManager = signInManager;
+      _logger = logger;
     }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+      await _signInManager.SignOutAsync();
+      _logger.LogInformation("User logged out.");
+      return RedirectToPage("/Index");
+    }
+  }
 }

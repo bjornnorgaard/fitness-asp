@@ -2,7 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Fitness.Web.Controllers
 {
-    [Route("")]
+    [Route("api/[controller]")]
+    [Route("api")]
     [Produces("application/json")]
     public class DefaultController : Controller
     {
